@@ -41,7 +41,30 @@ class _MyCardsPageState extends State<MyCardsPage> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: List.generate(state.cards.length, (index) {
+                      children: List.generate(
+                          state.cards.isEmpty ? 1 : state.cards.length,
+                          (index) {
+                        if (state.cards.isEmpty) {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 20,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.05),
+                                  blurRadius: 16,
+                                  offset: const Offset(0, 4),
+                                )
+                              ],
+                            ),
+                            child: const Text("Create your first task first"),
+                          );
+                        }
+
                         final card = state.cards[index];
 
                         return Container(

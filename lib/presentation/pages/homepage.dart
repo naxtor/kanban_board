@@ -59,7 +59,21 @@ class _HomePageState extends State<HomePage> {
                       if (state is BoardsHasData) {
                         if (state.boards.isEmpty) {
                           return Container(
-                            color: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 20,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.05),
+                                  blurRadius: 16,
+                                  offset: const Offset(0, 4),
+                                )
+                              ],
+                            ),
                             child: const Text("Create your first board here"),
                           );
                         }

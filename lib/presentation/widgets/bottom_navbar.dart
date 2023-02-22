@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kanban_board/presentation/bloc/boards/boards_bloc.dart';
+import 'package:kanban_board/presentation/bloc/boards/boards_event.dart';
 import 'package:kanban_board/presentation/bloc/my_cards/my_cards_bloc.dart';
 import 'package:kanban_board/presentation/bloc/my_cards/my_cards_event.dart';
 import 'package:kanban_board/presentation/pages/homepage.dart';
@@ -41,8 +43,13 @@ class _BottomNavbarState extends State<BottomNavbar> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: pageIndex,
         onTap: (value) {
-          if (value == 1) {
-            context.read<MyCardsBloc>().add(ClearMyCardsEvent());
+          switch (value) {
+            case 0:
+              context.read<BoardsBloc>().add(ClearBoardEvent());
+              break;
+            case 1:
+              context.read<MyCardsBloc>().add(ClearMyCardsEvent());
+              break;
           }
 
           setState(() {

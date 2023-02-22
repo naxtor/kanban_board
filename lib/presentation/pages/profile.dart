@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kanban_board/presentation/bloc/boards/boards_bloc.dart';
+import 'package:kanban_board/presentation/bloc/boards/boards_event.dart';
+import 'package:kanban_board/presentation/bloc/my_cards/my_cards_bloc.dart';
+import 'package:kanban_board/presentation/bloc/my_cards/my_cards_event.dart';
 import 'package:kanban_board/presentation/bloc/profile/profile_bloc.dart';
 import 'package:kanban_board/presentation/bloc/profile/profile_event.dart';
 import 'package:kanban_board/presentation/bloc/profile/profile_state.dart';
@@ -93,8 +97,11 @@ class ProfilePage extends StatelessWidget {
                       top: 12,
                     ),
                     child: InkWell(
-                      onTap: () =>
-                          context.read<ProfileBloc>().add(LogoutEvent(context)),
+                      onTap: () {
+                        context.read<ProfileBloc>().add(LogoutEvent(context));
+                        context.read<BoardsBloc>().add(ClearBoardEvent());
+                        context.read<MyCardsBloc>().add(ClearMyCardsEvent());
+                      },
                       child: Ink(
                         padding: const EdgeInsets.symmetric(
                           vertical: 20,

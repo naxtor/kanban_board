@@ -17,3 +17,5 @@ class CreateBoardEvent extends BoardsEvent {
         name,
       ];
 }
+
+class ClearBoardEvent extends BoardsEvent {}

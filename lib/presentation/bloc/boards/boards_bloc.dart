@@ -31,5 +31,6 @@ class BoardsBloc extends Bloc<BoardsEvent, BoardsState> {
         emit(BoardsHasData(boards));
       }
     });
+    on<ClearBoardEvent>((event, emit) => emit(BoardsEmpty()));
   }
 }
